@@ -55,7 +55,7 @@ const Home = () => {
       <h1 className="text-center mb-3">Characters</h1>
       <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
       <div className="container">
-        <div className="row">
+        <div className="">
           <Filter
             pageNumber={pageNumber}
             status={status}

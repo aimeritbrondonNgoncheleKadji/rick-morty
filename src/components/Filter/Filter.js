@@ -1,8 +1,30 @@
-import React from "react";
-import Gender from "./category/Gender";
-import Species from "./category/Species";
-import Status from "./category/Status";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Species from './category/Species'
+import Status from './category/Status'
+import Gender from './category/Gender';
 
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+`;
+const ButtonToggle = styled(Button)`
+  opacity: 0.6;
+  ${({ active }) =>
+    active &&
+    `
+    opacity: 1;
+  `}
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+`;
+const types = ['status', 'Gender', 'Species'];
 const Filter = ({
   pageNumber,
   updatePageNumber,
@@ -17,9 +39,11 @@ const Filter = ({
     updatePageNumber(1);
     window.location.reload(false);
   };
+
+  const [active, setActive] = useState(types[0]);
+
   return (
-    <div className="col-lg-3 col-12 mb-5">
-      <div className="text-center fw-bold fs-4 mb-2">Filters</div>
+    <div className="col-12 mb-5">
       <div
         style={{ cursor: "pointer" }}
         onClick={clear}
@@ -27,22 +51,44 @@ const Filter = ({
       >
         Clear Filters
       </div>
-      <div className="accordion" id="accordionExample">
-        <Status
-          updatePageNumber={updatePageNumber}
-          updateStatus={updateStatus}
-        />
-        <Species
-          updatePageNumber={updatePageNumber}
-          updateSpecies={updateSpecies}
-        />
-        <Gender
-          updatePageNumber={updatePageNumber}
-          updateGender={updateGender}
-        />
-      </div>
+      <ButtonGroup>
+        {types.map(type => (
+          <ButtonToggle
+            key={type}
+            active={active === type}
+            onClick={() => setActive(type)}
+          >
+            {type}
+          </ButtonToggle>
+        ))}
+      </ButtonGroup>
+      {(() => {
+        if (active === "status") {
+          return (
+            <Status
+              updatePageNumber={updatePageNumber}
+              updateStatus={updateStatus}
+            />
+          );
+        } else if (active === "Gender") {
+          return (
+            <Gender
+              updatePageNumber={updatePageNumber}
+              updateGender={updateGender}
+            />
+          );
+        } else {
+          return (
+            <Species
+              updatePageNumber={updatePageNumber}
+              updateSpecies={updateSpecies}
+            />
+          );
+        }
+      })()}
     </div>
+
   );
-};
+}
 
 export default Filter;

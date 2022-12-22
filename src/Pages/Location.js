@@ -39,7 +39,7 @@ const Location = () => {
         </h5>
         <h6 className="text-center">Type: {type === "" ? "Unknown" : type}</h6>
       </div>
-      <div className="row">
+      <div>
         <div className="col-lg-3 col-12 mb-4">
           <h4 className="text-center mb-4">Pick Location</h4>
           <InputGroup name="Location" changeID={setNumber} total={126} />

@@ -35,7 +35,7 @@ const Episodes = () => {
           Air Date: {air_date === "" ? "Unknown" : air_date}
         </h5>
       </div>
-      <div className="row">
+      <div>
         <div className="col-lg-3 col-12 mb-4">
           <h4 className="text-center mb-4">Pick Episode</h4>
           <InputGroup name="Episode" changeID={setID} total={51} />

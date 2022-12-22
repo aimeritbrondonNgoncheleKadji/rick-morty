@@ -2,7 +2,7 @@ import React from "react";
 
 const InputGroup = ({ name, changeID, total }) => {
   return (
-    <div className="input-group mb-3">
+    <div className="input-group mb-1 col-lg-3">
       <select
         onChange={(e) => changeID(e.target.value)}
         className="form-select"

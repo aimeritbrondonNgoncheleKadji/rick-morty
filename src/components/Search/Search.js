@@ -18,12 +18,6 @@ const Search = ({ setSearch, updatePageNumber }) => {
         className={styles.input}
         type="text"
       />
-      <button
-        onClick={searchBtn}
-        className={`${styles.btn} btn btn-primary fs-5`}
-      >
-        Search
-      </button>
     </form>
   );
 };
